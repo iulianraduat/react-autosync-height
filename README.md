@@ -27,9 +27,10 @@ Note\*: The height will be applied to the wrapper and not directly to the childr
 
 ### About versioning schema used for ReactAutosyncHeight
 
-- Major - it will be increased if the major version of the dependat package changes or there are breaking changes in the code of ReactAutosyncHeight or ReactAutosyncHeightRaw
-- Minor - it will be increased if no major version of the dependat package changes, but there are changes of the minor or patch versions of it
-- Patch - it will be increased if there are no changes of the dependat packages, but there are non breaking changes in the code of ReactAutosyncHeight or ReactAutosyncHeightRaw
+- Major - it will be increased when the major version of the dependat package changes or there are breaking changes in the code of ReactAutosyncHeight
+- Minor - it will be increased when no major version of the dependat package changes, but there are changes of the minor or patch versions of them
+- Minor - it will be increased when it is added functionality in a backward compatible manner
+- Patch - it will be increased when are made backward compatible bug fixes
 
 ---
 
@@ -94,3 +95,7 @@ export default App;
 ### 1.0.0
 
 - react-autosync-height is made publicly available
+
+### 1.1.0
+
+- Added support for auto-synchronization of the height when the children changes (as long as the changes are not made by the children themselves)

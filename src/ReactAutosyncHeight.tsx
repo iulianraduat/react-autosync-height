@@ -19,9 +19,16 @@ const ReactAutosyncHeight = (props: TProps) => {
     [id]
   );
 
-  /* we want to remove it at unmount */
+  React.useLayoutEffect(() => {
+    if (elRef.current) {
+      /* otherwise the new height uses the one set by us */
+      elRef.current.style.height = 'auto';
+      findAndApplyHeight(id, elRef.current);
+    }
+  }, [children, elRef, id]);
 
-  React.useLayoutEffect(
+  /* we want to remove it at unmount */
+  React.useEffect(
     () => () => {
       if (elRef.current) {
         removeFromCache(id, elRef.current);
@@ -69,18 +76,22 @@ function findAndApplyHeight(id: string, el: HTMLDivElement | null) {
 
   const elements = getFromCache(id);
 
+  console.log(id, elements);
+
   let maxHeight = 0;
   elements.forEach((el) => {
     maxHeight = getMaximumHeight(maxHeight, el);
   });
 
   elements.forEach((el) => {
-    if (getElementHeight(el) >= maxHeight) {
-      return;
-    }
+    // if (getElementHeight(el) >= maxHeight) {
+    //   return;
+    // }
 
     (el as any).style.height = `${maxHeight}px`;
   });
+
+  return maxHeight;
 }
 
 function getElementHeight(el: HTMLDivElement): number {
