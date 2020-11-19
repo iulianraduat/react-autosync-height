@@ -1,0 +1,74 @@
+{
+  "name": "react-autosync-height",
+  "version": "1.0.0",
+  "description": "A react component which makes all its instances having the same id to have the maximum hight of their children.",
+  "main": "lib/index.js",
+  "sideEffects": false,
+  "scripts": {
+    "build": "rimraf ./lib && tsc",
+    "deploy": "cross-env NODE_ENV=production yarn build && yarn publish --non-interactive",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "storybook:start": "start-storybook -c storybook",
+    "storybook:build": "build-storybook -c storybook -o docs",
+    "storybook:commit": "git add . && git commit -m \"Updated storybook\"",
+    "all": "yarn install && yarn storybook:build && yarn deploy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iulian-radu-at/react-autosync-height.git"
+  },
+  "files": [
+    "lib",
+    "index.d.ts"
+  ],
+  "keywords": [
+    "autosync height",
+    "height",
+    "react",
+    "react-component",
+    "ui"
+  ],
+  "author": "Iulian Radu <iulian.radu@gmx.at>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iulian-radu-at/react-autosync-height/issues"
+  },
+  "homepage": "https://github.com/iulian-radu-at/react-autosync-height#readme",
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@storybook/react": "^6.1.0",
+    "@types/babel-core": "^6.25.6",
+    "@types/enzyme": "^3.10.8",
+    "@types/enzyme-adapter-react-16": "^1.0.6",
+    "@types/react": "^16.9.56",
+    "@types/react-dom": "^16.9.9",
+    "@types/rimraf": "^3.0.0",
+    "@types/storybook__react": "^5.2.1",
+    "babel-core": "^6.26.3",
+    "babel-jest": "^26.6.3",
+    "babel-loader": "^8.2.1",
+    "babel-preset-react-app": "^10.0.0",
+    "cross-env": "^7.0.2",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.5",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.0.5"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0||>=17",
+    "react-dom": "^16.8.0||>=17"
+  },
+  "jest": {
+    "modulePathIgnorePatterns": [
+      "./node_modules",
+      "./history"
+    ],
+    "transform": {
+      "^.+\\.js$": "babel-jest"
+    },
+    "testRegex": "src/*(/(__tests?__/)([^_].*/)*?[^_][^/]*?\\.(test|spec)?\\.(js?))$",
+    "setupFiles": [
+      "./enzymeAdapter.setup.js"
+    ]
+  }
+}
