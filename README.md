@@ -23,7 +23,7 @@ Note\*: The height will be applied to the wrapper and not directly to the childr
 
 | ReactAutosyncHeight _uses_ | React  |
 | -------------------------: | :----: |
-|                      1.0.x | 16.8.0 |
+|                      1.x.x | 16.8.0 |
 
 ### About versioning schema used for ReactAutosyncHeight
 
@@ -99,3 +99,7 @@ export default App;
 ### 1.1.0
 
 - Added support for auto-synchronization of the height when the children changes (as long as the changes are not made by the children themselves)
+
+### 1.1.1
+
+- Removed debug code

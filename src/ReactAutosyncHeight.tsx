@@ -76,8 +76,6 @@ function findAndApplyHeight(id: string, el: HTMLDivElement | null) {
 
   const elements = getFromCache(id);
 
-  console.log(id, elements);
-
   let maxHeight = 0;
   elements.forEach((el) => {
     maxHeight = getMaximumHeight(maxHeight, el);
