@@ -103,3 +103,4 @@ export default App;
 ### 1.1.1
 
 - Removed debug code
+- Updated packages
