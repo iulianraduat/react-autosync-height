@@ -26,6 +26,7 @@ Note\*: The height will be applied to the wrapper and not directly to the childr
 |                      1.0.x |      16.8.0      |
 |                      1.1.x |      16.8.0      |
 |                      1.2.x | 16.9.0 or 17.0.0 |
+|                      1.3.x | 16.9.0 or 17.0.0 |
 
 ### About versioning schema used for ReactAutosyncHeight
 
@@ -114,4 +115,4 @@ export default App;
 
 ### 1.3.0
 
-- Updates of the children will be reflected too
+- Changes in height of direct and indirect children will resize ReactAutosyncHeight component too

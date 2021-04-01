@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { ALL_CATEGORIES, ATTRIBUTES, MutationPayload, MyMutationObserver } from './MyMutationObserver';
 
 interface TCache {
   [id: string]: HTMLDivElement[];
@@ -9,32 +10,64 @@ const cache: TCache = {};
 const ReactAutosyncHeight = (props: TProps) => {
   const { children, id } = props;
   const elRef = React.useRef<HTMLDivElement>();
+  const observerRef = React.useRef<MutationObserver>();
 
-  const handleRef = React.useCallback(
+  const handleResize = React.useCallback(
     (el: HTMLDivElement) => {
-      addToCache(id, el);
-      findAndApplyHeight(id, el);
-      elRef.current = el;
+      /* otherwise the new height uses the one set by us */
+      const elements = getFromCache(id);
+      elements.forEach((rashEl) => rashEl.setAttribute('style', `height:auto`));
+      requestAnimationFrame(() => findAndApplyHeight(id, el));
     },
     [id]
   );
 
-  React.useLayoutEffect(() => {
-    if (elRef.current) {
-      /* otherwise the new height uses the one set by us */
-      elRef.current.style.height = 'auto';
-      findAndApplyHeight(id, elRef.current);
-    }
-  }, [children, elRef, id]);
+  const handleMutation = React.useCallback(
+    (type: string, payload: MutationPayload) => {
+      const el = elRef.current;
 
-  /* we want to remove it at unmount */
+      if (type === ATTRIBUTES && payload.target === el) {
+        return;
+      }
+
+      if (el !== undefined) {
+        handleResize(el);
+      }
+    },
+    [handleResize]
+  );
+
+  const handleRef = React.useCallback(
+    (el: HTMLDivElement | null) => {
+      if (el === null) {
+        return;
+      }
+
+      addToCache(id, el);
+      findAndApplyHeight(id, el);
+      elRef.current = el;
+
+      handleResize(el);
+
+      observerRef.current = new MyMutationObserver(
+        el,
+        handleMutation,
+        MyMutationObserver.buildConfig({ categories: ALL_CATEGORIES, subtree: true })
+      );
+    },
+    [handleMutation, handleResize, id]
+  );
+
+  /* we want to remove it and to free the observer at unmount */
   React.useEffect(
     () => () => {
+      observerRef.current?.disconnect();
+
       if (elRef.current) {
         removeFromCache(id, elRef.current);
       }
     },
-    [elRef, id]
+    [id]
   );
 
   return (
@@ -82,22 +115,20 @@ function findAndApplyHeight(id: string, el: HTMLDivElement | null) {
   });
 
   elements.forEach((el) => {
-    // if (getElementHeight(el) >= maxHeight) {
-    //   return;
-    // }
-
-    (el as any).style.height = `${maxHeight}px`;
+    el.setAttribute('style', `height:${maxHeight}px`);
   });
 
   return maxHeight;
 }
 
-function getElementHeight(el: HTMLDivElement): number {
-  return Math.ceil(el.getBoundingClientRect().height);
+function getMaximumHeight(maxHeight: number, el: HTMLDivElement): number {
+  const elHeight = getElementHeight(el);
+  return Math.max(maxHeight, elHeight);
 }
 
-function getMaximumHeight(prevMaxHeight: number, el: HTMLDivElement): number {
-  return Math.max(prevMaxHeight, getElementHeight(el));
+function getElementHeight(el: HTMLDivElement): number {
+  const box = el.getBoundingClientRect();
+  return Math.ceil(box.height);
 }
 
 interface TProps {
