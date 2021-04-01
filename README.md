@@ -10,10 +10,10 @@ You can access the storybook for this component [here](https://iulian-radu-at.gi
 
 ## Props
 
-| Name     | Type      | Required | Default | Description                                                                              |
-| -------- | --------- | -------- | ------- | ---------------------------------------------------------------------------------------- |
-| id       | string    | yes      | -       | The id used to find the components for which to compute and apply the maximal height     |
-| children | ReactNode | yes      | -       | The component who needs to have the height(\*) auto-synchronized with it pear components |
+| Name     | Type      | Required | Default | Description                                                                               |
+| -------- | --------- | -------- | ------- | ----------------------------------------------------------------------------------------- |
+| id       | string    | yes      | -       | The id used to find the components for which to compute and apply the maximal height      |
+| children | ReactNode | yes      | -       | The component who needs to have the height(\*) auto-synchronized with its pear components |
 
 Note\*: The height will be applied to the wrapper and not directly to the children, as children can be an array of components.
 
@@ -111,3 +111,7 @@ export default App;
 
 - Accepting React 17 as peerDependencies
 - Fixed security warnings
+
+### 1.3.0
+
+- Updates of the children will be reflected too

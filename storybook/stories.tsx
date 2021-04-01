@@ -2,6 +2,7 @@ import ReactAutosyncHeight from '../src/ReactAutosyncHeight';
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { StorybookComponent } from './StorybookComponent';
+import { StaticComponent } from './StaticComponent';
 
 const style: React.CSSProperties = {
   display: 'grid',
@@ -45,7 +46,7 @@ storiesOf('ReactAutosyncHeight', module)
       </div>
     </div>
   ))
-  .add('Dynamic change of the content', () => (
+  .add('Dynamic change of the content (re-render)', () => (
     <div style={style}>
       <div id="Column1">
         <StorybookComponent id="Section1" speed={2} color="aqua" />
@@ -57,6 +58,21 @@ storiesOf('ReactAutosyncHeight', module)
         <StorybookComponent id="Section1" speed={1} color="aqua" />
         <StorybookComponent id="Section2" speed={1} color="antiquewhite" />
         <StorybookComponent id="Section3" speed={0.4} color="aliceblue" />
+      </div>
+    </div>
+  ))
+  .add('Dynamic change of the content (child re-render)', () => (
+    <div style={style}>
+      <div id="Column1">
+        <StaticComponent id="Section1" speed={2} color="aqua" />
+        <StaticComponent id="Section2" speed={0.5} color="antiquewhite" />
+        <StaticComponent id="Section3" speed={1} color="aliceblue" />
+      </div>
+
+      <div id="Column2">
+        <StaticComponent id="Section1" speed={1} color="aqua" />
+        <StaticComponent id="Section2" speed={1} color="antiquewhite" />
+        <StaticComponent id="Section3" speed={0.4} color="aliceblue" />
       </div>
     </div>
   ));
