@@ -9,7 +9,9 @@ const style: React.CSSProperties = {
   gridTemplateColumns: 'repeat(2, minmax(300px ,500px))',
 };
 
-const color = '#448844';
+const styleColumn: React.CSSProperties = {
+  border: 'solid 2px grey',
+};
 
 storiesOf('ReactAutosyncHeight', module)
   .addParameters({ options: { showPanel: false } })
@@ -74,5 +76,24 @@ storiesOf('ReactAutosyncHeight', module)
         <StaticComponent id="Section2" speed={1} color="antiquewhite" />
         <StaticComponent id="Section3" speed={0.4} color="aliceblue" />
       </div>
+    </div>
+  ))
+  .add('Dynamic change of the content (children has ReactAutosyncHeight)', () => (
+    <div style={style}>
+      <ReactAutosyncHeight id="Column">
+        <div style={styleColumn}>
+          <StaticComponent id="Section1" speed={2} color="aqua" />
+          <StaticComponent id="Section2" speed={0.5} color="antiquewhite" />
+          <StaticComponent id="Section3" speed={1} color="aliceblue" />
+        </div>
+      </ReactAutosyncHeight>
+
+      <ReactAutosyncHeight id="Column">
+        <div style={styleColumn}>
+          <StaticComponent id="Section1" speed={1} color="aqua" />
+          <StaticComponent id="Section2" speed={1} color="antiquewhite" />
+          <StaticComponent id="Section3" speed={0.4} color="aliceblue" />
+        </div>
+      </ReactAutosyncHeight>
     </div>
   ));

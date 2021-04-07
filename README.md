@@ -116,3 +116,7 @@ export default App;
 ### 1.3.0
 
 - Changes in height of direct and indirect children will resize ReactAutosyncHeight component too
+
+### 1.3.1
+
+- Fixed error: Failed to construct 'MutationObserver'

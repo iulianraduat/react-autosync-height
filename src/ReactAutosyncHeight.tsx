@@ -10,7 +10,7 @@ const cache: TCache = {};
 const ReactAutosyncHeight = (props: TProps) => {
   const { children, id } = props;
   const elRef = React.useRef<HTMLDivElement>();
-  const observerRef = React.useRef<MutationObserver>();
+  const observerRef = React.useRef<MyMutationObserver>();
 
   const handleResize = React.useCallback(
     (el: HTMLDivElement) => {

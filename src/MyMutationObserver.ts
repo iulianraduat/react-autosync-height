@@ -10,7 +10,8 @@ export const CHILD_REMOVED = 'childRemoved';
 type MutationObserverCategory = 'ALL_CATEGORIES' | 'childList' | 'attributes' | 'characterData';
 type MutationObserverCategories = ('childList' | 'attributes' | 'characterData')[];
 
-export class MyMutationObserver extends MutationObserver {
+export class MyMutationObserver {
+  private observer: MutationObserver;
   private el: HTMLDivElement;
   private onMutation: (type: string, payload: MutationPayload) => void;
 
@@ -19,18 +20,18 @@ export class MyMutationObserver extends MutationObserver {
     onMutation: (type: string, payload: MutationPayload) => void,
     config?: MutationObserverInit
   ) {
-    super((mutations) => mutations.forEach(this.mutationReducer.bind(this)));
-
-    this.el = el;
-    this.onMutation = onMutation;
-
     const node = ReactDOM.findDOMNode(el);
     if (node === null) {
       return;
     }
 
-    this.observe(node, config);
+    this.el = el;
+    this.onMutation = onMutation;
+    this.observer = new MutationObserver((mutations) => mutations.forEach(this.mutationReducer.bind(this)));
+    this.observer.observe(node, config);
   }
+
+  public disconnect() {}
 
   /* config */
 
