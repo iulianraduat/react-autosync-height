@@ -88,7 +88,7 @@ storiesOf('ReactAutosyncHeight', module)
         </div>
       </ReactAutosyncHeight>
 
-      <ReactAutosyncHeight id="Column" debug>
+      <ReactAutosyncHeight id="Column">
         <div style={styleColumn}>
           <StaticComponent id="Section1" speed={1} color="aqua" />
           <StaticComponent id="Section2" speed={1} color="antiquewhite" />

@@ -114,12 +114,19 @@ function findAndApplyHeight(id: string, el: HTMLDivElement | null, debug: boolea
     maxHeight = getMaximumHeight(maxHeight, el);
   });
 
+  let count = 0;
   elements.forEach((el) => {
-    el.setAttribute('style', `height:${maxHeight}px`);
+    const newHeight = `${maxHeight}px`;
+    if (el.style.height === newHeight) {
+      return;
+    }
+
+    el.setAttribute('style', `height:${newHeight}`);
+    count++;
   });
 
-  if (debug) {
-    console.info(`[ReactAutosyncHeight] ${id} : ${maxHeight}px`);
+  if (debug && count > 0) {
+    console.info(`[ReactAutosyncHeight] ${id} : ${maxHeight}px (applied to ${count} element${count === 1 ? '' : 's'})`);
   }
 
   return maxHeight;
