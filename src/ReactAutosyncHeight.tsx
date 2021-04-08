@@ -8,7 +8,7 @@ interface TCache {
 const cache: TCache = {};
 
 const ReactAutosyncHeight = (props: TProps) => {
-  const { children, id } = props;
+  const { children, debug = false, id } = props;
   const elRef = React.useRef<HTMLDivElement>();
   const observerRef = React.useRef<MyMutationObserver>();
 
@@ -17,9 +17,9 @@ const ReactAutosyncHeight = (props: TProps) => {
       /* otherwise the new height uses the one set by us */
       const elements = getFromCache(id);
       elements.forEach((rashEl) => rashEl.setAttribute('style', `height:auto`));
-      requestAnimationFrame(() => findAndApplyHeight(id, el));
+      requestAnimationFrame(() => findAndApplyHeight(id, el, debug));
     },
-    [id]
+    [debug, id]
   );
 
   const handleMutation = React.useCallback(
@@ -44,7 +44,7 @@ const ReactAutosyncHeight = (props: TProps) => {
       }
 
       addToCache(id, el);
-      findAndApplyHeight(id, el);
+      findAndApplyHeight(id, el, debug);
       elRef.current = el;
 
       handleResize(el);
@@ -55,7 +55,7 @@ const ReactAutosyncHeight = (props: TProps) => {
         MyMutationObserver.buildConfig({ categories: ALL_CATEGORIES, subtree: true })
       );
     },
-    [handleMutation, handleResize, id]
+    [handleMutation, handleResize, debug, id]
   );
 
   /* we want to remove it and to free the observer at unmount */
@@ -97,13 +97,13 @@ function removeFromCache(id: string, el: HTMLDivElement) {
   cache[id] = cache[id].filter((e) => e !== el);
 }
 
-function findAndApplyHeight(id: string, el: HTMLDivElement | null) {
+function findAndApplyHeight(id: string, el: HTMLDivElement | null, debug: boolean) {
   if (!el) {
     return;
   }
 
   if (el.offsetHeight === 0) {
-    setTimeout(() => findAndApplyHeight(id, el), 100);
+    setTimeout(() => findAndApplyHeight(id, el, debug), 100);
     return;
   }
 
@@ -117,6 +117,10 @@ function findAndApplyHeight(id: string, el: HTMLDivElement | null) {
   elements.forEach((el) => {
     el.setAttribute('style', `height:${maxHeight}px`);
   });
+
+  if (debug) {
+    console.info(`[ReactAutosyncHeight] ${id} : ${maxHeight}px`);
+  }
 
   return maxHeight;
 }
@@ -133,6 +137,7 @@ function getElementHeight(el: HTMLDivElement): number {
 
 interface TProps {
   children: React.ReactNode;
+  debug?: boolean;
   id: string;
 }
 

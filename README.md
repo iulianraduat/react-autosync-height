@@ -120,3 +120,7 @@ export default App;
 ### 1.3.1
 
 - Fixed error: Failed to construct 'MutationObserver'
+
+### 1.4.0
+
+- Added a debug prop so we get notified in the console how it is changed the height
