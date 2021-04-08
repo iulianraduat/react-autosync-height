@@ -80,7 +80,7 @@ storiesOf('ReactAutosyncHeight', module)
   ))
   .add('Dynamic change of the content (children has ReactAutosyncHeight)', () => (
     <div style={style}>
-      <ReactAutosyncHeight id="Column">
+      <ReactAutosyncHeight id="Column" debug>
         <div style={styleColumn}>
           <StaticComponent id="Section1" speed={2} color="aqua" />
           <StaticComponent id="Section2" speed={0.5} color="antiquewhite" />
@@ -88,7 +88,7 @@ storiesOf('ReactAutosyncHeight', module)
         </div>
       </ReactAutosyncHeight>
 
-      <ReactAutosyncHeight id="Column">
+      <ReactAutosyncHeight id="Column" debug>
         <div style={styleColumn}>
           <StaticComponent id="Section1" speed={1} color="aqua" />
           <StaticComponent id="Section2" speed={1} color="antiquewhite" />
