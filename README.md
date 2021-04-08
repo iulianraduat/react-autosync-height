@@ -124,3 +124,7 @@ export default App;
 ### 1.4.0
 
 - Added a debug prop so we get notified in the console how it is changed the height
+
+### 1.4.1
+
+- Optimized the alteration of attributes

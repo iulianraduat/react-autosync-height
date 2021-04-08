@@ -14,9 +14,22 @@ const ReactAutosyncHeight = (props: TProps) => {
 
   const handleResize = React.useCallback(
     (el: HTMLDivElement) => {
-      /* otherwise the new height uses the one set by us */
+      if (el.style.height === 'auto') {
+        /* we are already in the process of computing the new height */
+        return;
+      }
+
       const elements = getFromCache(id);
-      elements.forEach((rashEl) => rashEl.setAttribute('style', `height:auto`));
+      elements.forEach((el) => {
+        /* we change the attributes only if it is necessary */
+        if (el.style.height === 'auto') {
+          return;
+        }
+
+        el.dataset.prevHeight = el.style.height;
+        /* otherwise the new height uses the one set by us */
+        el.setAttribute('style', `height:auto`);
+      });
       requestAnimationFrame(() => findAndApplyHeight(id, el, debug));
     },
     [debug, id]
@@ -26,6 +39,7 @@ const ReactAutosyncHeight = (props: TProps) => {
     (type: string, payload: MutationPayload) => {
       const el = elRef.current;
 
+      /* we ignore changes produced by altering the hight */
       if (type === ATTRIBUTES && payload.target === el) {
         return;
       }
@@ -116,6 +130,12 @@ function findAndApplyHeight(id: string, el: HTMLDivElement | null, debug: boolea
 
   let count = 0;
   elements.forEach((el) => {
+    const prevHeight = el.dataset.prevHeight;
+    delete el.dataset.prevHeight;
+    if (el.style.height === prevHeight) {
+      return;
+    }
+
     const newHeight = `${maxHeight}px`;
     if (el.style.height === newHeight) {
       return;
@@ -126,7 +146,8 @@ function findAndApplyHeight(id: string, el: HTMLDivElement | null, debug: boolea
   });
 
   if (debug && count > 0) {
-    console.info(`[ReactAutosyncHeight] ${id} : ${maxHeight}px (applied to ${count} element${count === 1 ? '' : 's'})`);
+    const msg = `[ReactAutosyncHeight] ${id} : ${maxHeight}px (applied to ${count} element${count === 1 ? '' : 's'})`;
+    console.info(msg);
   }
 
   return maxHeight;
