@@ -58,6 +58,7 @@ export const ExampleFromReadme: ComponentStory<typeof ReactAutosyncHeight> =
       </div>
     </div>
   );
+ExampleFromReadme.storyName = 'Example from Readme';
 
 export const DynamicChangeOfTheContent_Rerender: ComponentStory<
   typeof ReactAutosyncHeight
@@ -76,6 +77,8 @@ export const DynamicChangeOfTheContent_Rerender: ComponentStory<
     </div>
   </div>
 );
+DynamicChangeOfTheContent_Rerender.storyName =
+  'Dynamic change of the content (re-render)';
 
 export const DynamicChangeOfTheContent_ChildRerender: ComponentStory<
   typeof ReactAutosyncHeight
@@ -94,8 +97,8 @@ export const DynamicChangeOfTheContent_ChildRerender: ComponentStory<
     </div>
   </div>
 );
-DynamicChangeOfTheContent_ChildRerender.name =
-  'DynamicChangeOfTheContent (ChildRerender)';
+DynamicChangeOfTheContent_ChildRerender.storyName =
+  'Dynamic change of the content (child re-render)';
 
 export const DynamicChangeOfTheContent_ChildrenHasReactAutosyncHeight: ComponentStory<
   typeof ReactAutosyncHeight
@@ -118,3 +121,5 @@ export const DynamicChangeOfTheContent_ChildrenHasReactAutosyncHeight: Component
     </ReactAutosyncHeight>
   </div>
 );
+DynamicChangeOfTheContent_ChildrenHasReactAutosyncHeight.storyName =
+  'Dynamic change of the content (children has ReactAutosyncHeight)';
