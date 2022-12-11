@@ -1,4 +1,10 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import ReactAutosyncHeight from '../src/ReactAutosyncHeight';
 
 const MAX_NUM_ROWS = 25;
@@ -26,7 +32,9 @@ export const DynamicComponent = (props: TProps) => {
           }
 
           count.current++;
-          return count.current <= COUNT_APPENDS ? prevNumRows + 1 : prevNumRows - 1;
+          return count.current <= COUNT_APPENDS
+            ? prevNumRows + 1
+            : prevNumRows - 1;
         }),
       speed * 1000,
       COUNT_APPENDS + COUNT_SUBSTRACTIONS,
@@ -36,7 +44,7 @@ export const DynamicComponent = (props: TProps) => {
   }, [count, speed]);
 
   const renderText = useCallback(() => {
-    const rows = [];
+    const rows: Array<string> = [];
     for (let i = 0; i < numRows; i++) {
       rows.push(TEXT);
     }
