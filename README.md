@@ -27,6 +27,7 @@ Note\*: The height will be applied to the wrapper and not directly to the childr
 |                      1.1.x |      16.8.0      |
 |                      1.2.x | 16.9.0 or 17.0.0 |
 |                      1.3.x | 16.9.0 or 17.0.0 |
+|                      2.0.x |      18.0.0      |
 
 ### About versioning schema used for ReactAutosyncHeight
 
@@ -56,31 +57,37 @@ class App extends React.Component {
       <div className="App" style={style}>
         <div id="Column1">
           <ReactAutosyncHeight id="Section1">
-            1. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
-            et dolore magna aliquyam erat, sed diam voluptua.
+            1. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+            nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+            erat, sed diam voluptua.
           </ReactAutosyncHeight>
           <ReactAutosyncHeight id="Section2">
-            2. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
-            et dolore magna aliquyam erat, sed diam voluptua.
+            2. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+            nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+            erat, sed diam voluptua.
           </ReactAutosyncHeight>
           <ReactAutosyncHeight id="Section3">
-            3. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
-            et dolore magna aliquyam erat, sed diam voluptua.
+            3. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+            nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+            erat, sed diam voluptua.
           </ReactAutosyncHeight>
         </div>
 
         <div id="Column2">
           <ReactAutosyncHeight id="Section1">
-            1. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
-            et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-            Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+            1. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+            nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+            erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+            et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
+            Lorem ipsum dolor sit amet.
           </ReactAutosyncHeight>
           <ReactAutosyncHeight id="Section2">
             2. Lorem ipsum dolor sit amet, consetetur sadipscing elitr.
           </ReactAutosyncHeight>
           <ReactAutosyncHeight id="Section3">
-            3. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
-            et dolore magna aliquyam erat, sed diam voluptua.
+            3. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+            nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+            erat, sed diam voluptua.
           </ReactAutosyncHeight>
         </div>
       </div>
@@ -128,3 +135,11 @@ export default App;
 ### 1.4.1
 
 - Optimized the alteration of attributes
+
+### 1.4.2
+
+- Updated the packages
+
+### 2.0.0
+
+- Supports minimum React 18
