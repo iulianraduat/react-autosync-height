@@ -1,8 +1,8 @@
-import ReactAutosyncHeight from '../src/ReactAutosyncHeight';
+import { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
-import { StorybookComponent } from './StorybookComponent';
+import ReactAutosyncHeight from '../src/ReactAutosyncHeight';
 import { StaticComponent } from './StaticComponent';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { StorybookComponent } from './StorybookComponent';
 
 const style: React.CSSProperties = {
   display: 'grid',
@@ -13,56 +13,55 @@ const styleColumn: React.CSSProperties = {
   border: 'solid 2px grey',
 };
 
-export default {
+const meta: Meta<typeof ReactAutosyncHeight> = {
   title: 'ReactAutosyncHeight',
   component: ReactAutosyncHeight,
-} as ComponentMeta<typeof ReactAutosyncHeight>;
+} as Meta<typeof ReactAutosyncHeight>;
+export default meta;
+type Story = StoryObj<typeof ReactAutosyncHeight>;
 
-export const ExampleFromReadme: ComponentStory<typeof ReactAutosyncHeight> =
-  () => (
-    <div style={style}>
-      <div id="Column1">
-        <ReactAutosyncHeight id="Section1">
-          1. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-          nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-          sed diam voluptua.
-        </ReactAutosyncHeight>
-        <ReactAutosyncHeight id="Section2">
-          2. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-          nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-          sed diam voluptua.
-        </ReactAutosyncHeight>
-        <ReactAutosyncHeight id="Section3">
-          3. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-          nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-          sed diam voluptua.
-        </ReactAutosyncHeight>
-      </div>
-
-      <div id="Column2">
-        <ReactAutosyncHeight id="Section1">
-          1. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-          nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-          sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
-          rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
-          ipsum dolor sit amet.
-        </ReactAutosyncHeight>
-        <ReactAutosyncHeight id="Section2">
-          2. Lorem ipsum dolor sit amet, consetetur sadipscing elitr.
-        </ReactAutosyncHeight>
-        <ReactAutosyncHeight id="Section3">
-          3. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-          nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-          sed diam voluptua.
-        </ReactAutosyncHeight>
-      </div>
+export const ExampleFromReadme = () => (
+  <div style={style}>
+    <div id="Column1">
+      <ReactAutosyncHeight id="Section1">
+        1. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+        nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+        sed diam voluptua.
+      </ReactAutosyncHeight>
+      <ReactAutosyncHeight id="Section2">
+        2. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+        nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+        sed diam voluptua.
+      </ReactAutosyncHeight>
+      <ReactAutosyncHeight id="Section3">
+        3. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+        nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+        sed diam voluptua.
+      </ReactAutosyncHeight>
     </div>
-  );
+
+    <div id="Column2">
+      <ReactAutosyncHeight id="Section1">
+        1. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+        nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+        sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+        rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
+        ipsum dolor sit amet.
+      </ReactAutosyncHeight>
+      <ReactAutosyncHeight id="Section2">
+        2. Lorem ipsum dolor sit amet, consetetur sadipscing elitr.
+      </ReactAutosyncHeight>
+      <ReactAutosyncHeight id="Section3">
+        3. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+        nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+        sed diam voluptua.
+      </ReactAutosyncHeight>
+    </div>
+  </div>
+);
 ExampleFromReadme.storyName = 'Example from Readme';
 
-export const DynamicChangeOfTheContent_Rerender: ComponentStory<
-  typeof ReactAutosyncHeight
-> = () => (
+export const DynamicChangeOfTheContent_Rerender = () => (
   <div style={style}>
     <div id="Column1">
       <StorybookComponent id="Section1" speed={2} color="aqua" />
@@ -80,9 +79,7 @@ export const DynamicChangeOfTheContent_Rerender: ComponentStory<
 DynamicChangeOfTheContent_Rerender.storyName =
   'Dynamic change of the content (re-render)';
 
-export const DynamicChangeOfTheContent_ChildRerender: ComponentStory<
-  typeof ReactAutosyncHeight
-> = () => (
+export const DynamicChangeOfTheContent_ChildRerender = () => (
   <div style={style}>
     <div id="Column1">
       <StaticComponent id="Section1" speed={2} color="aqua" />
@@ -100,9 +97,7 @@ export const DynamicChangeOfTheContent_ChildRerender: ComponentStory<
 DynamicChangeOfTheContent_ChildRerender.storyName =
   'Dynamic change of the content (child re-render)';
 
-export const DynamicChangeOfTheContent_ChildrenHasReactAutosyncHeight: ComponentStory<
-  typeof ReactAutosyncHeight
-> = () => (
+export const DynamicChangeOfTheContent_ChildrenHasReactAutosyncHeight = () => (
   <div style={style}>
     <ReactAutosyncHeight id="Column" debug>
       <div style={styleColumn}>
