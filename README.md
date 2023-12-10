@@ -147,3 +147,7 @@ export default App;
 ### 2.0.1
 
 - Updated the packages
+
+### 2.0.2
+
+- Updated the packages

@@ -7,18 +7,13 @@
     "strictNullChecks": true,
     "removeComments": true,
     "declaration": false,
-    "sourceMap": true,
+    "sourceMap": false,
     "jsx": "react",
     "typeRoots": ["index.d.ts", "node_modules/@types"],
     "lib": ["es5", "es6", "dom"],
     "skipLibCheck": true,
     "esModuleInterop": true
   },
-  "include": [
-    "./src/**/*.tsx",
-    "./src/**/*.ts",
-    "./storybook/**/*.tsx",
-    "./storybook/**/*.ts"
-  ],
+  "include": ["./src/**/*.tsx", "./src/**/*.ts"],
   "exclude": ["node_modules"]
 }
